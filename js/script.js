@@ -96,13 +96,13 @@ $(function( $ ) {
 
     /* Agrega nuevo tema vacio */
     $(document).on("click","#add_theme",function(e){
-      if(n<7){
+      if(n<12){
         $("#bt_save_them_1").remove();
         $("#bt_orden_them_1").remove();
         let fmdefault = form_default();
         $("div#tabs-1").append(fmdefault);
         nametema();
-      }else {
+      }else{
         return false;
       }
       btn_generales_tab1();
@@ -112,7 +112,7 @@ $(function( $ ) {
     let nametema = () => {
         let allNames = [];
         let id = "";
-        for(let j=0; j<7; j++){
+        for(let j=0; j<12; j++){
           allNames.push(j+1);
         }
         $(`input[name='option_names']`).each(function() {
@@ -140,8 +140,7 @@ $(function( $ ) {
           action : 'get_topic',
           theme_search : theme_search
         }
-      })
-      .success(function( result ) {
+      }).success(function(result){
         let obj = JSON.parse(result);
         let size = obj.length;
         let idSelectable = "selectable"+m;
@@ -162,8 +161,7 @@ $(function( $ ) {
              $("#resultado_temas_"+m).html("");
            }
          });
-       })
-       .fail(function( jqXHR, textStatus, errorThrown ) {
+       }).fail(function( jqXHR, textStatus, errorThrown ) {
          console.error( "La solicitud a fallado: " +  textStatus +" - "  +errorThrown);
        });
      }
