@@ -117,7 +117,8 @@ $(function( $ ) {
         }
         $(`input[name='option_names']`).each(function() {
           let existName = $(this).val();
-          existName =parseInt (existName.substr(-1));
+          let theme_num = existName.match(/([\d]{1,})$/g);
+          existName = parseInt(theme_num);
           if(Number.isInteger(existName)){
             let pos = allNames.indexOf(existName);
             allNames.splice(pos, 1)
@@ -276,8 +277,15 @@ $(function( $ ) {
         $(`input[name='id_notes_${t}']`).each(function() {
             let notes = new Object();
             let idElemt = $(this).attr('id');
-            let item = idElemt.substr(3,1);
-            let theme = idElemt.substr(5,1);
+            let matches = idElemt.match(/([0-9]{1,})\_([\d]{1,})$/g);
+            let identifiers = matches[0].split("_");
+
+            let item = identifiers[0]; //.substr(3,1);
+            let theme = identifiers[1]; //.substr(5,1);
+
+            console.log(idElemt);
+            console.log(`Item: ${item} - Theme: ${theme}`);
+            console.log("acá");
             let name_note =  $(`#nn_${item}_${theme}`).val();
             let id_note = $(this).val();
             if(name_note  == ""){
@@ -392,13 +400,15 @@ $(function( $ ) {
         let theme = new Object();
         let item = $(elem).val();
         let id = $(elem).attr('id');
-        id = id.substr(-1);
-        let opc_name_them = $(`#option_name_${id}`).val();
+        // id = id.substr(-1);
+        let theme_num = id.match(/([\d]{1,})$/g);
+        let opc_name_them = $(`#option_name_${theme_num}`).val();
         theme.order = i;
         theme.option_name = opc_name_them;
         arrayTheme.push(theme);
         i++;
       });
+      console.log(arrayTheme);
       $.ajax({
         url: opc_vars.ajaxurl,
         type: "POST",
@@ -407,7 +417,7 @@ $(function( $ ) {
           datos : arrayTheme
         }
       }).success(function(result){
-        //console.log(result);
+        console.log(result);
       }).fail(function( jqXHR, textStatus, errorThrown ) {
         console.error( "La solicitud de eliminar tema ha fallado: " +  textStatus +" - "  +errorThrown);
       });
@@ -631,14 +641,16 @@ $(function( $ ) {
     $(document).on("click",  "input[name='btn_save_themes']" ,function(e){
         let item = $(this).attr('id');
         let tema = item.substr(11);
+        console.log(tema);
         save_themes(tema);
     });
 
     $(document).on("click","input[name=btn_delete_themes]",function(e){
         let theme = $(this).attr('id');
-        theme = theme.substr(-1);
-        delete_theme = $(`#option_name_${theme}`).val();
-        let conf = confirm(`¿Está seguro de eliminar el tema  ${theme}?`);
+        let theme_num = theme.match(/([\d]{1,})$/g);
+        // theme = theme.substr(-1);
+        delete_theme = $(`#option_name_${theme_num}`).val();
+        let conf = confirm(`¿Está seguro de eliminar el tema  ${theme_num}?`);
         if(conf){
                 console.log("Eliminando.....");
                 $.ajax({
@@ -650,7 +662,7 @@ $(function( $ ) {
                     }
                 })
                 .success(function( result ) {
-                    $(`#theme_content_${theme}`).empty();
+                    $(`#theme_content_${theme_num}`).empty();
                     updateMainTheme();
                     location.reload();
                 })
@@ -662,12 +674,13 @@ $(function( $ ) {
 
     $(document).on("focusout","input[name=order_themes]",function(e){
         let theme = $(this).attr('id');
-        theme = theme.substr(-1);
+        let theme_num = theme.match(/([\d]{1,})$/g);
+        // theme = theme.substr(-1);
         let valor = parseInt($(this).val());
-        if(valor> 0 && valor <  n) {
+        if(valor> 0 && valor < n) {
         }else{
             alert("Solo se permiten valores del 1 al " +(n-1));
-            $(this).val(theme);
+            $(this).val(theme_num);
             $(this).focus();
             return false;
         }
