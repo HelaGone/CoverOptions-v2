@@ -283,9 +283,9 @@ $(function( $ ) {
             let item = identifiers[0]; //.substr(3,1);
             let theme = identifiers[1]; //.substr(5,1);
 
-            console.log(idElemt);
-            console.log(`Item: ${item} - Theme: ${theme}`);
-            console.log("acá");
+            // console.log(idElemt);
+            // console.log(`Item: ${item} - Theme: ${theme}`);
+            // console.log("acá");
             let name_note =  $(`#nn_${item}_${theme}`).val();
             let id_note = $(this).val();
             if(name_note  == ""){
@@ -315,7 +315,7 @@ $(function( $ ) {
         })
         .success(function( result ) {
           updateMainTheme();
-          location.reload();
+          // location.reload();
         })
         .fail(function( jqXHR, textStatus, errorThrown ) {
              console.error( "La solicitud a fallado: " +  textStatus +" - "  +errorThrown);
@@ -408,7 +408,8 @@ $(function( $ ) {
         arrayTheme.push(theme);
         i++;
       });
-      console.log(arrayTheme);
+      // console.log(arrayTheme);
+      // console.log(opc_vars.ajaxurl);
       $.ajax({
         url: opc_vars.ajaxurl,
         type: "POST",
@@ -417,9 +418,11 @@ $(function( $ ) {
           datos : arrayTheme
         }
       }).success(function(result){
-        console.log(result);
-      }).fail(function( jqXHR, textStatus, errorThrown ) {
-        console.error( "La solicitud de eliminar tema ha fallado: " +  textStatus +" - "  +errorThrown);
+        // Regresa true, no necesita hacer nada con ese valor
+        console.log(`success: ${result}`);
+      }).error(function( jqXHR, textStatus, errorThrown){
+        // console.log(jqXHR);
+        console.error( "La solicitud de actualizar tema ha fallado: " +  textStatus);
       });
     }
 
@@ -552,12 +555,12 @@ $(function( $ ) {
 
     $(document).on("focusout", "input[name=tema]", function(e){
       if($(this).val() == ""){
-        console.log( $(this) );
+        // console.log( $(this) );
         const k = $(this).attr('id').substr(5);
         $("#tema_id_"+k).val("");
-        console.log($(this).val());
+        // console.log($(this).val());
       }else{
-        console.log( $(this).val() );
+        // console.log( $(this).val() );
       }
     });
 
@@ -640,8 +643,10 @@ $(function( $ ) {
 
     $(document).on("click",  "input[name='btn_save_themes']" ,function(e){
         let item = $(this).attr('id');
+        // console.log(item);
+
         let tema = item.substr(11);
-        console.log(tema);
+        // console.log(tema);
         save_themes(tema);
     });
 
@@ -771,7 +776,7 @@ $(function( $ ) {
       let active_trans = $('#active_transmision').is(':checked');
       let live_url = $("#live-url").val();
       let channel = $("input[name=channel]:checked").val();
-      console.log(channel);
+      // console.log(channel);
       transmision.title = title_trans;
       transmision.image = imagen_trans;
       transmision.active = active_trans;

@@ -298,8 +298,8 @@ function chenge_order_themes(){
 
 function save_main_theme(){
 	$datos = $_POST["datos"];
-	$update =update_option("main_home_theme",$datos  , "no" );
-	echo $update ;
+	$update =update_option("main_home_theme",$datos, "no");
+	echo $update;
 	wp_die();
 }
 
