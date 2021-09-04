@@ -54,7 +54,9 @@ function create_admin_page(){
 		    <li id="link_tab_2"><a href="#tabs-2">Transmisi&oacute;n en vivo</a></li>
 		    <li id="link_tab_3"><a href="#tabs-3">Selecci&oacute;n del editor</a></li>
 		  </ul>
-			<div id="tabs-1"></div>
+			<div id="tabs-1">
+				<div id="confirm_box">Guardado con éxito!</div>
+			</div>
 			<div id="tabs-2">
   			<h1>Transmisi&oacute;n en vivo</h1>
 				<form method="post">
@@ -298,8 +300,8 @@ function chenge_order_themes(){
 
 function save_main_theme(){
 	$datos = $_POST["datos"];
-	$update =update_option("main_home_theme",$datos, "no");
-	echo $update;
+	$update = update_option("main_home_theme",$datos, "no");
+	echo ($update) ? $update : 0;
 	wp_die();
 }
 

@@ -419,6 +419,7 @@ $(function( $ ) {
         }
       }).success(function(result){
         // Regresa true, no necesita hacer nada con ese valor
+        alert("Opción guardada con éxito");
         console.log(`success: ${result}`);
       }).error(function( jqXHR, textStatus, errorThrown){
         // console.log(jqXHR);
@@ -699,8 +700,10 @@ $(function( $ ) {
             let theme = new Object();
             let item = $(elem).val();
             let id = $(elem).attr('id');
-                id = id.substr(-1);
-            let opc_name_them = $(`#option_name_${id}`).val();
+            let theme_num = id.match(/([\d]{1,})$/g);
+                // id = id.substr(-1);
+                console.log(theme_num);
+            let opc_name_them = $(`#option_name_${theme_num}`).val();
             theme.order = item;
             theme.option_name = opc_name_them;
             arrayTheme.push(theme);

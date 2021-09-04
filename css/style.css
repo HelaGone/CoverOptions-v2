@@ -25,3 +25,5 @@
 #inp_title_transmision{  clear: left;}
 
 #live_url_field{position: relative;left: 140px;color:tomato;}
+#tabs-1{position: relative;}
+#confirm_box{border: 2px solid aquamarine;color: aquamarine;font-weight: 700;text-align: center;padding: 12px;border-radius: 12px;position: fixed;}
