@@ -91,6 +91,10 @@ function create_admin_page(){
 							<input type="radio" name="channel" value="Las Estrellas">
 						</label>
 						<label for="channel">
+							Digital
+							<input type="radio" name="channel" value="Digital">
+						</label>
+						<label for="channel">
 							Youtube
 							<input type="radio" name="channel" value="Youtube">
 						</label>
