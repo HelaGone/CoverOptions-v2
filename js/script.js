@@ -452,6 +452,7 @@ $(function( $ ) {
             $("#title_trans_vivo").val(obj["title"]);
             $("#image-url").val(obj["image"]);
             $("#active_transmision").prop('checked', JSON.parse(obj["active"]));
+            $("input[name=panic]").prop("checked", obj.panic );
             $.each($("input[name=channel]"), function(i, v){
               if($(v).val() == obj["channel"]){
                 $(v).prop("checked", "true");
@@ -459,8 +460,14 @@ $(function( $ ) {
                   $("#live-url").show();
                   $("#live-url").val(obj["live_url"]);
                   $("#live_url_container").show();
+                  $("input[name=panic]").prop('checked', false);
+                  $("input[name=panic]").attr('disabled',true);
                 }else{
                   $("#live-url").hide();
+                }
+                if($(v).val() == "Las Estrellas"||$(v).val() == "Digital"){
+                  $("input[name=panic]").prop('checked', false);
+                  $("input[name=panic]").attr('disabled',true);
                 }
               }
             });
@@ -764,8 +771,16 @@ $(function( $ ) {
         if($(v).val() == "Facebook"||$(v).val() == "Youtube"){
           $("#live_url_container").show();
           $("#live-url").show();
+          $("input[name=panic]").prop('checked', false);
+          $("input[name=panic]").attr('disabled',true);
         }else{
           $("#live_url_container").hide();
+        }
+        if($(v).val() == "Las Estrellas"||$(v).val() == "Digital"){
+          $("input[name=panic]").prop('checked', false);
+          $("input[name=panic]").attr('disabled',true);
+        }else if($(v).val() == 'FOROtv'){
+          $("input[name=panic]").attr('disabled',false);
         }
       })
     });
@@ -779,12 +794,14 @@ $(function( $ ) {
       let active_trans = $('#active_transmision').is(':checked');
       let live_url = $("#live-url").val();
       let channel = $("input[name=channel]:checked").val();
+      let panic = $("input[name=panic]:checked").val();
       // console.log(channel);
       transmision.title = title_trans;
       transmision.image = imagen_trans;
       transmision.active = active_trans;
       transmision.live_url = live_url;
       transmision.channel = channel;
+      transmision.panic = panic;
       $.ajax({
         url: opc_vars.ajaxurl,
         type : "POST",

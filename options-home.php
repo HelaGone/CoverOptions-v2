@@ -103,6 +103,13 @@ function create_admin_page(){
 							<input type="radio" name="channel" value="Facebook">
 						</label>
 					</div>
+					<div class="opch_txt_block panic">
+						<label for="panic">
+							Panic
+						</label>
+						<input type="checkbox" name="panic">
+						<em>Activar solo cuando la señal de FOTOtv falla. La señal de FOROtv y este checkbox deben estar activos</em>
+					</div>
 					<div class ="opch_save">
 						  <input class ="button button-primary button-large" id="save_transmision_vivo" type="button" value="Guardar" />
 					</div>

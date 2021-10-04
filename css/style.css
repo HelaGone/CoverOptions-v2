@@ -27,3 +27,8 @@
 #live_url_field{position: relative;left: 140px;color:tomato;}
 #tabs-1{position: relative;}
 #confirm_box{border: 2px solid aquamarine;color: aquamarine;font-weight: 700;text-align: center;padding: 12px;border-radius: 12px;position: fixed;}
+
+.opch_txt_block.panic label{color: tomato;font-weight: 700;}
+.opch_txt_block.panic em{color: tomato;font-size: 12px;}
+.opch_txt_block.panic input[type=checkbox]{border: 1px solid tomato;color: tomato;}
+.opch_txt_block.panic input[type=checkbox]::before{color: red;}
