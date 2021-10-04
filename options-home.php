@@ -60,7 +60,10 @@ function create_admin_page(){
 			<div id="tabs-2">
   			<h1>Transmisi&oacute;n en vivo</h1>
 				<form method="post">
-
+					<div class = "opch_txt_block">
+						<div class = "opch_txt_left"> Activar  </div>
+						<input type="checkbox" id ="active_transmision">
+					</div>
 					<div class ="opch_txt_block">
 						<div class = "opch_txt_left">T&iacute;tulo : </div>
 						<div> <input  type="text"   id="title_trans_vivo" size = "70" placeholder=" T&iacute;tulo transmisi&oacute;n en vivo" /></div>
@@ -80,8 +83,7 @@ function create_admin_page(){
 						</div>
 					</div>
 					<div class = "opch_txt_block">
-						<div class = "opch_txt_left"> Activar  </div>
-						<input type="checkbox" id ="active_transmision">
+						<div class = "opch_txt_left"> Señal: </div>
 						<label for="channel">
 							FOROtv
 							<input type="radio" name="channel" value="FOROtv" checked>
